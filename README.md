@@ -1,0 +1,1 @@
+A Glitch project with a serverless function to commit design tokens from the [Design Tokens plugin for Figma](https://github.com/lukasoppermann/design-tokens#pushing-to-github) to my style-dictionary repository. 
