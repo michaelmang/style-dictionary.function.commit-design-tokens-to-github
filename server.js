@@ -13,7 +13,6 @@ const octokit = new Octokit({ auth: process.env.GITHUB_PERSONAL_ACCESS_TOKEN });
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
@@ -31,12 +30,17 @@ app.post("/commit-tokens", async (req, res) => {
     // swallow 404
   }
   
+  console.log(req.body)
+  
+  const buffer = Buffer.from(req.body.client_payload.tokens);
+  const content = buffer.toString('base64');
+  
   await octokit.request("PUT /repos/{owner}/{repo}/contents/{path}", {
     owner: "michaelmang",
     repo: "style-dictionary",
     path: "input/design-tokens.json",
     message: "Update design tokens",
-    content: "derp",
+    content,
     sha: file && file.data && file.data.sha ? file.data.sha : null
   });
 
