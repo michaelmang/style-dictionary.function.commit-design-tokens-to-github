@@ -1,0 +1,25 @@
+{
+  "name": "commit-design-tokens-github",
+  "version": "0.0.1",
+  "description": "A serverless function to commit design tokens to a GitHub repository",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "@octokit/core": "^3.2.4"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/hello-express"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
+}
