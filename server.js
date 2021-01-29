@@ -30,6 +30,8 @@ app.post("/commit-tokens", async (req, res) => {
     // swallow 404
   }
   
+  console.log(req.body)
+  
   const buffer = Buffer.from(req.body.client_payload.tokens);
   const content = buffer.toString('base64');
   
