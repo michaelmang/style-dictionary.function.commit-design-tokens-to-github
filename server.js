@@ -30,7 +30,7 @@ app.post("/commit-tokens", async (req, res) => {
     // swallow 404
   }
   
-  const buffer = new Buffer(req.body.client_payload.tokens);
+  const buffer = Buffer.from(req.body.client_payload.tokens);
   const content = buffer.toString('base64');
   
   await octokit.request("PUT /repos/{owner}/{repo}/contents/{path}", {
