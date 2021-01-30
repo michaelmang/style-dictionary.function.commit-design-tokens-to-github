@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(bodyParser.json());
+app.use(bodyParser.text());
 
 const octokit = new Octokit({ auth: process.env.GITHUB_PERSONAL_ACCESS_TOKEN });
 
@@ -30,9 +30,8 @@ app.post("/commit-tokens", async (req, res) => {
     // swallow 404
   }
   
-  console.log(req.body)
-  
-  const buffer = Buffer.from(req.body.client_payload.tokens);
+  const body = JSON.parse(req.body);
+  const buffer = Buffer.from(body.client_payload.tokens);
   const content = buffer.toString('base64');
   
   await octokit.request("PUT /repos/{owner}/{repo}/contents/{path}", {
